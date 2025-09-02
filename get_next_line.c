@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:23 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/02 23:54:09 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/02 23:57:18 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static short	more_size(t_buffer *buffer)
 	return (1);
 }
 
-void	handle_nl(t_buffer	*buffer, ssize_t nl_i)
+static void	handle_nl(t_buffer	*buffer, ssize_t nl_i)
 {
 	size_t	to_del;
 
