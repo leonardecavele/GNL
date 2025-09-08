@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:23 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/08 19:10:09 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/08 22:47:29 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static short	allocl(t_reader *b)
 
 static short	handle_r(t_reader *b)
 {
-	static char	r[BUFFER_SIZE + 1] = "";
+	static char	r[BUFFER_SIZE + 1];
 
 	b->r = r;
 	if (!*r)
