@@ -6,88 +6,87 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:23 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/08 17:25:00 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:10:09 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static short	allocb(t_buffer *buffer)
+static short	allocl(t_reader *b)
 {
-	char	*temp;
+	char	*tmp;
 
-	temp = malloc(buffer->len + buffer->readc + 1);
-	if (!temp)
+	tmp = malloc(b->bf_i + b->nread + 1);
+	if (!tmp)
 	{
-		free(buffer->buf);
-		if (buffer->line)
-			free(buffer->line);
+		free(b->b);
+		free(b->line);
 		return (0);
 	}
-	if (buffer->line)
+	if (b->line)
 	{
-		ft_memcpy(temp, buffer->line, buffer->len + 1);
-		free(buffer->line);
+		ft_nllstrcpy(tmp, b->line, b->bf_i + 1);
+		free(b->line);
 	}
-	temp[buffer->len] = 0;
-	buffer->line = temp;
+	tmp[b->bf_i] = 0;
+	b->line = tmp;
 	return (1);
 }
 
-static void	handle_nl(t_buffer	*buffer, ssize_t lnl_i)
+static short	handle_r(t_reader *b)
 {
-	size_t	to_del;
+	static char	r[BUFFER_SIZE + 1] = "";
 
-	to_del = buffer->len - (lnl_i + 1);
-	ft_memcpy(buffer->rest, &buffer->line[lnl_i + 1], to_del);
-	buffer->rest[to_del] = 0;
-	ft_memset(&buffer->line[lnl_i + 1], 0, to_del);
+	b->r = r;
+	if (!*r)
+		return (1);
+	b->nread = 0;
+	while (b->r[b->nread])
+		b->nread++;
+	if (!allocl(b))
+		return (0);
+	ft_nllstrcpy(b->line, b->r, b->nread);
+	b->bf_i = b->nread;
+	ft_memset(b->r, 0, b->nread);
+	b->nl_i = has_nl(b->line, b->nread);
+	return (1);
 }
 
-static short	init(t_buffer *buffer)
+static short	init_b(t_reader *b)
 {
-	static char	rest[BUFFER_SIZE + 1] = "";
-
-	buffer->line = 0;
-	buffer->len = 0;
-	buffer->rest = rest;
-	buffer->bnl_i = -1;
-	buffer->buf = malloc(BUFFER_SIZE);
-	if (!buffer->buf)
+	b->bf_i = 0;
+	b->nl_i = -1;
+	b->line = 0;
+	b->b = malloc(BUFFER_SIZE);
+	if (!b->b)
 		return (0);
-	if (!*rest)
-		return (1);
-	buffer->readc = ft_strlen(buffer->rest);
-	if (!allocb(buffer))
-		return (0);
-	ft_memcpy(buffer->line, buffer->rest, buffer->readc);
-	buffer->line[buffer->readc] = 0;
-	buffer->len = buffer->readc;
-	ft_memset(buffer->rest, 0, buffer->readc);
-	buffer->bnl_i = has_nl(buffer->line, buffer->readc);
 	return (1);
 }
 
 char	*get_next_line(int fd)
 {
-	t_buffer		buffer;
+	t_reader		b;
+	size_t			ndel;
 
-	if (BUFFER_SIZE < 1 || fd < 0 || !init(&buffer))
+	if (BUFFER_SIZE < 1 || fd < 0 || !init_b(&b) || !handle_r(&b))
 		return (0);
-	while (buffer.bnl_i < 0)
+	while (b.nl_i < 0)
 	{
-		buffer.readc = read(fd, buffer.buf, BUFFER_SIZE);
-		if (buffer.readc < 1)
+		b.nread = read(fd, b.b, BUFFER_SIZE);
+		if (b.nread < 1)
 			break ;
-		if (!allocb(&buffer))
+		if (!allocl(&b))
 			return (0);
-		ft_memcpy(&buffer.line[buffer.len], buffer.buf, buffer.readc);
-		buffer.len += buffer.readc;
-		buffer.line[buffer.len] = 0;
-		buffer.bnl_i = has_nl(buffer.buf, buffer.readc);
+		ft_nllstrcpy(&b.line[b.bf_i], b.b, b.nread);
+		b.bf_i += b.nread;
+		b.nl_i = has_nl(b.b, b.nread);
 	}
-	if (buffer.bnl_i > -1)
-		handle_nl(&buffer, buffer.len - buffer.readc + buffer.bnl_i);
-	free(buffer.buf);
-	return (buffer.line);
+	if (b.nl_i > -1)
+	{
+		ndel = b.bf_i - (b.bf_i - b.nread + b.nl_i + 1);
+		ft_nllstrcpy(b.r, &b.line[b.bf_i - b.nread + b.nl_i + 1], ndel);
+		ft_memset(&b.line[b.bf_i - b.nread + b.nl_i + 1], 0, ndel);
+	}
+	free(b.b);
+	return (b.line);
 }
