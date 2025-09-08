@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:07 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/02 23:54:27 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:22:47 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ typedef unsigned char	t_u8;
 typedef struct s_buffer
 {
 	char			*line;
-	size_t			size;
-	char			buf[BUFFER_SIZE + 1];
-	ssize_t			readc;
 	char			*rest;
+	char			*buf;
+	size_t			len;
+	ssize_t			readc;
+	ssize_t			bnl_i;
 }					t_buffer;
 
 char	*get_next_line(int fd);
@@ -34,7 +35,7 @@ char	*get_next_line(int fd);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-ssize_t	has_nl(char *s);
+ssize_t	has_nl(char *s, ssize_t n);
 void	*ft_memset(void *s, int c, size_t n);
 
 #endif

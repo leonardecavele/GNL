@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:21:14 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/02 19:11:52 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:46:30 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-ssize_t	has_nl(char *s)
+ssize_t	has_nl(char *s, ssize_t n)
 {
 	ssize_t	i;
 
 	i = -1;
-	while (s[++i])
+	while (++i < n && s[i])
 		if (s[i] == '\n')
 			return (i);
 	return (-1);
