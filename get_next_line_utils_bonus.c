@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:21:14 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 01:47:14 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:20:13 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-ssize_t	has_nl(char *s, ssize_t n)
+ssize_t	get_nl(char *s, ssize_t n)
 {
 	ssize_t	i;
 
