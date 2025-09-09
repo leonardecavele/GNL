@@ -6,17 +6,14 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:07 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/08 21:22:10 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:39:44 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <unistd.h>
-# include <stdlib.h>
-
-# define FD_M 10
+# define FD_MAX 1024
 
 typedef unsigned char	*t_u8p;
 typedef unsigned char	t_u8;
@@ -34,8 +31,8 @@ typedef struct s_reader
 char	*get_next_line(int fd);
 
 //utils
-void	*ft_nllstrcpy(void *dst, const void *src, size_t n);
-ssize_t	has_nl(char *s, ssize_t n);
+void	*nllstrcpy(void *dst, const void *src, size_t n);
+ssize_t	get_nl(char *s, ssize_t n);
 void	*ft_memset(void *s, int c, size_t n);
 
 #endif
