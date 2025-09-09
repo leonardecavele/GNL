@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:07 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 02:16:29 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:18:40 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef unsigned char	t_u8;
 typedef struct s_reader
 {
 	char			*line;
-	char			*r;
+	char			**r;
 	char			*b;
 	ssize_t			nread;
 	ssize_t			nl_i;
