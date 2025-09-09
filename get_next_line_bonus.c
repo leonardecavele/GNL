@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:23 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 01:46:46 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:18:23 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	allocl(t_reader *b)
 
 static bool	handle_r(t_reader *b, int fd)
 {
-	static char	r[FD_M][BUFFER_SIZE + 1];
+	static char	r[FD_MAX][BUFFER_SIZE + 1];
 
 	b->r = r[fd];
 	if (!*b->r)
