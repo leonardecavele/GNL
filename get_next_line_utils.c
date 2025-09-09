@@ -6,13 +6,13 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:21:14 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/08 19:10:10 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:44:41 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_nllstrcpy(void *dst, const void *src, size_t n)
+void	*nllstrcpy(void *dst, const void *src, size_t n)
 {
 	if (!dst && !src)
 		return (NULL);
@@ -30,7 +30,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-ssize_t	has_nl(char *s, ssize_t n)
+ssize_t	get_nl(char *s, ssize_t n)
 {
 	ssize_t	i;
 

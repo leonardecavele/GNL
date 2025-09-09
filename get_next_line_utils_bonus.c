@@ -6,13 +6,13 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:21:14 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/08 20:17:21 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:47:14 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_nllstrcpy(void *dst, const void *src, size_t n)
+void	*nllstrcpy(void *dst, const void *src, size_t n)
 {
 	if (!dst && !src)
 		return (NULL);
