@@ -6,12 +6,20 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:23 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 14:30:43 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:16:57 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 #include <stdbool.h>
+
+static char	*handle_eof(t_reader *b)
+{
+	free(*b->r);
+	*b->r = 0;
+	free(b->b);
+	return (b->line);
+}
 
 static bool	allocl(t_reader *b)
 {
@@ -69,14 +77,6 @@ static bool	init_b(t_reader *b)
 	if (!b->b)
 		return (0);
 	return (1);
-}
-
-static char	*handle_eof(t_reader *b)
-{
-	free(*b->r);
-	*b->r = 0;
-	free(b->b);
-	return (b->line);
 }
 
 char	*get_next_line(int fd)
