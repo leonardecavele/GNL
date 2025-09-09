@@ -6,12 +6,15 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:07 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 01:39:44 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:16:29 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
+
+# include <unistd.h>
+# include <stdlib.h>
 
 # define FD_MAX 1024
 
