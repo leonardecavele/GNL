@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 12:20:07 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/09/09 01:43:57 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/09/13 19:07:58 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_reader
 }					t_reader;
 
 char	*get_next_line(int fd);
-
 //utils
 void	*nllstrcpy(void *dst, const void *src, size_t n);
 ssize_t	get_nl(char *s, ssize_t n);
